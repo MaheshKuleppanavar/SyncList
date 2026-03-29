@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg bg-white shadow-sm border-bottom">
+  <div class="container">
+
+    <!-- BRAND -->
+    <a class="navbar-brand fw-bold text-primary" href="/tasks">
+      📋 SyncList
+    </a>
+
+    <!-- TOGGLER -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- LINKS -->
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+      <!-- LEFT -->
+      <div class="navbar-nav">
+        <a class="nav-link fw-medium" href="/tasks">Home</a>
+        <a class="nav-link fw-medium" href="/tasks/new">Add Task</a>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="navbar-nav ms-auto align-items-lg-center">
+
+        <% if(!currentUser){ %>
+          <a class="nav-link" href="/login">Login</a>
+          <a class="btn btn-primary btn-sm ms-lg-2" href="/signup">Signup</a>
+        <% } %>
+
+        <% if(currentUser){ %>
+          <span class="nav-link text-muted me-2">
+            👤 <%= currentUser.username %>
+          </span>
+          <a class="btn btn-outline-danger btn-sm" href="/logout">Logout</a>
+        <% } %>
+
+      </div>
+
+    </div>
+  </div>
+</nav>

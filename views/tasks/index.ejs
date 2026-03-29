@@ -1,0 +1,98 @@
+<%- layout('layouts/boilerplate')%>
+<body class="bg-light">
+<div class="container my-3">
+    <h1 class="text-center mb-4">📋My Tasks</h1>
+    <div class="row">
+        <h3 class="text-center">To do</h3>
+        <%if(!tasks.length){%>
+            <p class="text-center">No tasks found</p>
+        <%}%>
+
+        <% for(let task of tasks){ %>
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= task.title %>
+                    </h5>
+                    <p class="card-text">
+                        <%= task.description %>
+                    </p>
+                    <p class="mb-1" id="status">
+                        <strong>Status:</strong>
+                        <span class="badge bg-info text-dark">
+                            <%= task.status %>
+                        </span>
+                    </p>
+                    <p class="mb-0">
+                        <strong>Due Date:</strong><br>
+                        <small class="text-muted">
+                             <%if(task.duedate){%>
+                                <%= task.duedate.toLocaleString('en-IN') %>
+                            <%}%>
+                        </small>
+                    </p>
+                    <div class="d-flex align-items-center gap-3">
+                        <form method="GET" action="/tasks/<%= task._id%>/edit">
+                            <button class="btn btn-sm mt-1 text-white btn-warning">Edit</button>
+                        </form>
+                        <form action="/tasks/<%=task._id%>/complete?_method=PUT" method="POST">
+                            <button  class="btn btn-sm mt-1 btn-secondary">Complete</button>
+                        </form>
+                        <form action="/tasks/<%=task._id%>?_method=DELETE" method="POST">
+                            <button class="btn btn-sm mt-1 btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+    
+    <div class="row mt-3">
+        <h3 class="text-center">Completed</h3>
+        <% for(let task of completed){ %>
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class=`<%=task.status==="completed"?"strikethrough-text card-title":" card-title" %>`>
+                        <%= task.title %>
+                    </h5>
+                    <p class="card-text">
+                        <%= task.description %>
+                    </p>
+                    <p class="mb-1" id="status">
+                        <strong>Status:</strong>
+                        <span class="badge bg-info text-dark">
+                            <%= task.status %>
+                        </span>
+                    </p>
+                    <p class="mb-0">
+                        <strong>Due Date:</strong><br>
+                        <small class="text-muted">
+                            <%if(task.duedate){%>
+                                <%= task.duedate.toLocaleString('en-IN') %>
+                            <%}%>
+                        </small>
+                    </p>
+                    <div class="d-flex align-items-center gap-3">
+                        <form action="/tasks/<%=task._id%>/incomplete?_method=PUT" method="POST">
+                            <button disabled=`<%=task.status==='completed'?true:false%>` id="complete" class="btn btn-success btn-sm mt-1 ">Completed</button>
+                        </form>
+                        <form action="/tasks/<%=task._id%>?_method=DELETE" method="POST">
+                            <button class="btn btn-sm mt-1 btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>
+<style>
+    .strikethrough-text {
+  text-decoration: line-through;
+}
+
+</style>
+</body>
