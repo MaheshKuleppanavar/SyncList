@@ -37,7 +37,7 @@ SyncList is a simple and efficient To-Do List application that allows users to m
 
 ## 🔗 Live Links
 
-- GitHub Repository: https://github.com/MaheshKuleppanavar/tasktrack  
+- GitHub Repository: https://github.com/MaheshKuleppanavar/synclist  
 - Live Demo: https://synclist-pc8z.onrender.com  
 
 ---

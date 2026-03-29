@@ -14,9 +14,9 @@ const userRoutes=require('./routes/user.js');
 const taskRoutes=require('./routes/task.js');
 
 async function main() {
-    // await mongoose.connect(process.env.MONGO_URL);
+    await mongoose.connect(process.env.MONGO_URL);
     //for local environment
-    await mongoose.connect('mongodb://127.0.0.1:27017/synclist');
+    // await mongoose.connect('mongodb://127.0.0.1:27017/synclist');
 }
 
 main().then(()=>console.log('Database connected🔗'))
